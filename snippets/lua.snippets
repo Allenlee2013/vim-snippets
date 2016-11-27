@@ -1,21 +1,217 @@
 snippet #!
 	#!/usr/bin/env lua
 	$1
+
 snippet local
 	local ${1:x} = ${0:1}
+
 snippet fun
 	function ${1:fname}(${2:...})
 		${0:-- body}
 	end
+
+snippet lfun
+	local function ${1:fname}(${2:...})
+		${0:-- body}
+	end
+
 snippet for
 	for ${1:i}=${2:1},${3:10} do
 		${0:print(i)}
 	end
+
 snippet forp
 	for ${1:i},${2:v} in pairs(${3:table_name}) do
 	   ${0:-- body}
 	end
+
 snippet fori
 	for ${1:i},${2:v} in ipairs(${3:table_name}) do
 	   ${0:-- body}
 	end
+
+snippet forvp
+	for ${1:i},${2:v} in vpairs(${3:table_name}) do
+	   ${0:-- body}
+	end
+
+snippet forvi
+	for ${1:i},${2:v} in vipairs(${3:table_name}) do
+	   ${0:-- body}
+	end
+
+
+snippet initfn
+	table.insert(InitFnTable, function()
+		-- Init
+		${0:-- body}
+	end)
+
+snippet initactordata
+	-- Init Actor data
+	local function InitActorData(${1:actor})
+		${0:-- body}
+	end
+
+snippet getactordata
+	-- Get Actor data
+	local function GetActorData(${1:actor})
+		${0:-- body}
+	end
+
+snippet gm
+	GmEventFuncList.register("${1:gm}", ${2:fname}, 1)
+
+snippet net
+	ActorRegisterNetHandler(${1:syscode}, ${2:cmdcode}, ${3:fname})  -- ($1, $2), c->s
+
+snippet lnet
+	LActorRegisterNetHandler(${1:syscode}, ${2:cmdcode}, ${3:fname})  -- ($1, $2), c->s
+
+snippet unet
+	UActorRegisterNetHandler(${1:syscode}, ${2:cmdcode}, ${3:fname})  -- ($1, $2), c->s
+
+snippet dps
+	DeepToString(${1:var})
+
+snippet dpt
+	DeepPrintTable(${1:var})
+
+snippet sendmailre
+	SendMailRewards(${1:actorid}, ${2:title}, ${3:mailmsg}, ${4:rewards}, ${5:level}, ${6:strlogcounter}, ${7:strkingdom}, ${8:serverid}, ${9:accountname})
+
+snippet giveitemre
+	GiveItemRewards(${1:actor}, ${2:rewards}, ${3:effecttype}, ${4:log}, ${5:title}, ${6:mailmsg}, ${7:timedelay})
+
+snippet lgiveitemre
+	LGiveItemRewards(${1:actor}, ${2:rewards}, ${3:needeffect}, ${4:log}, ${5:title}, ${6:mailmsg}, ${7:timedelay})
+
+snippet ugiveitemre
+	UGiveItemRewards(${1:actor}, ${2:rewards}, ${3:needeffect}, ${4:log}, ${5:title}, ${6:mailmsg}, ${7:timedelay})
+
+snippet logger
+	local logger = Logger.GetLogger("${1:name}", ${2:create_not_exists}, ${3:level})
+
+snippet logdebug
+	logger:Debug("${1:fmt}", ${2:...})
+
+snippet loginfo
+	logger:Info("${1:fmt}", ${2:...})
+
+snippet logwarn
+	logger:Warn("${1:fmt}", ${2:...})
+
+snippet logerr
+	logger:Error("${1:fmt}", ${2:...})
+
+snippet sendtipmsg
+	SendTipMsg(${1:sysarg}, TipMsgId.${2:tp}, ${3:...})
+
+snippet bctipmsg
+	BroadcastTipMsg(TipMsgId.${1:tp}, ${2:...})
+
+snippet bcguildtipmsg
+	BroadcastGuildTipMsg(${1:guildid}, TipMsgId.${2:tp}, ${3:...})
+
+snippet bcscenetipmsg
+	BroadcastSceneTipMsg(${1:hScene}, TipMsgId.${2:tp}, ${3:...})
+
+snippet loginevent
+	EventCallDispatcher.registerEventCall(aeUserLogin, ${1:fname})
+
+snippet lloginevent
+	LocalEventDispatcher.registerEventCall(aeUserLogin, ${1:fname})
+
+snippet uloginevent
+	UnionEventDispatcher.registerEventCall(aeUserLogin, ${1:fname})
+
+snippet logoutevent
+	EventCallDispatcher.registerEventCall(aeUserLogout, ${1:fname})
+
+snippet llogoutevent
+	LocalEventDispatcher.registerEventCall(aeUserLogout, ${1:fname})
+
+snippet ulogoutevent
+	UnionEventDispatcher.registerEventCall(aeUserLogout, ${1:fname})
+
+snippet levelevent
+	EventCallDispatcher.registerEventCall(aeLevel, ${1:fname})
+
+snippet llevelevent
+	LocalEventDispatcher.registerEventCall(aeLevel, ${1:fname})
+
+snippet ulevelevent
+	UnionEventDispatcher.registerEventCall(aeLevel, ${1:fname})
+
+snippet newdayevent
+	EventCallDispatcher.registerEventCall(aeNewDayArrive, ${1:fname})
+
+snippet lnewdayevent
+	LocalEventDispatcher.registerEventCall(aeNewDayArrive, ${1:fname})
+
+snippet unewdayevent
+	UnionEventDispatcher.registerEventCall(aeNewDayArrive, ${1:fname})
+
+snippet msgpacket
+	local pack = LActor.allocMsgPacket(${1:actor}, ${2:enLocalActor}, ${3:amtMsgType}, ${4:true}, ${5:true})
+	LActor.flushMsgPacket(actor)
+
+snippet lmsgpacket
+	local pack = LLActor.allocMsgPacket(${1:lactor}, ${2:enActor}, ${3:amtMsgType}, ${4:true}, ${5:true})
+	LLActor.flushMsgPacket(lactor)
+
+snippet umsgpacket
+	local pack = LUActor.allocMsgPacket(${1:uactor}, ${2:enActor}, ${3:amtMsgType}, ${4:true}, ${5:true})
+	LUActor.flushMsgPacket(uactor)
+
+snippet amtrecv
+	actorRecvMsgDispacher.register(${1:msgType}, ${2:fname})
+
+snippet amtresp
+	actorRespMsgDispacher.register(${1:msgType}, ${2:fname})
+
+snippet lamtrecv
+	lactorRecvMsgDispacher.register(${1:msgType}, ${2:fname})
+
+snippet lamtresp
+	lactorRespMsgDispacher.register(${1:msgType}, ${2:fname})
+
+snippet uamtrecv
+	uactorRecvMsgDispacher.register(${1:msgType}, ${2:fname})
+
+snippet uamtresp
+	uactorRespMsgDispacher.register(${1:msgType}, ${2:fname})
+
+snippet monallkill
+	MonAllKilledDispatcher.register(${1:sceneId}, ${2:function(sceneId, scenePtr, flag, et)})
+
+snippet mondamage
+	MonDamageDispatcher.register(${1:monId}, ${2:function(monster, monId, val, et)})
+
+snippet monhp
+	MonHpChangedDispatcher.register(${1:monId}, ${2:function(monster, rate, monId)})
+
+snippet mondie
+	MonDieDispatcher.register(${1:monId}, ${2:function_havekiller(monster, killer, monId, actorExpValue)})
+
+snippet mondieex
+	MonDieExDispatcher.register(${1:monId}, ${2:function(monster, monId)})
+
+snippet gathercheck
+	GatherCheckDispatcher.register(${1:monId}, ${2:function(monster, actor, monId, gatherTime)})
+
+snippet gatherfinish
+	GatherFinishDispatcher.register(${1:monId}, ${2:function(monster, actor, monId)}) 
+
+snippet questcanfinish
+	QuestMod.registerOnCanFinish(${1:questid}, ${2:function(actor, questid)})
+
+snippet questgiveup
+	QuestMod.registerOnGiveup(${1:questid}, ${2:function(actor, questid)})
+
+snippet questtimeout
+	QuestMod.registerOnTimeout(${1:questid}, ${2:function(actor, questid)})
+
+snippet questaccept
+	QuestMod.registerOnAccept(${1:questid}, ${2:function(actor, questid, isLogin)})
+
